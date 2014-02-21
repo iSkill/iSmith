@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.Point;
 import java.text.DecimalFormat;
@@ -231,27 +232,27 @@ public class iSmith extends Script implements Paintable, MessageListener{
                Time.sleep(2800);
               if(INSTANCE == 2){ Mouse.getInstance().click(460,405, false);
              Status = "Selecting bar to smith";
-             Time.sleep(1000);
+             Time.sleep(500);
               Mouse.getInstance().click(460, 480, true);
-              Time.sleep(1500);
+              Time.sleep(1000);
               Keyboard.getInstance().sendKeys("99");
               Status = "Smithing bars";
               Time.sleep(6500);
               } else if (INSTANCE == 3){
                   Mouse.getInstance().click(400, 406, false);
                  Status = "Selecting bar to smith";
-                 Time.sleep(1000);
+                 Time.sleep(500);
                   Mouse.getInstance().click(390, 480, true);
-                  Time.sleep(1500);
+                  Time.sleep(1000);
                   Keyboard.getInstance().sendKeys("99");
                   Status = "Smithing bars";
                   Time.sleep(9000);
               } else if (INSTANCE == 4){
                  Mouse.getInstance().click(346, 406, false);
                  Status = "Selecting bar to smith";
-                 Time.sleep(1000);
+                 Time.sleep(500);
                   Mouse.getInstance().click(340, 480, true);
-                  Time.sleep(1500);
+                  Time.sleep(1000);
                   Keyboard.getInstance().sendKeys("99");
                   Status = "Smithing bars";
                   Time.sleep(12000);
@@ -260,9 +261,9 @@ public class iSmith extends Script implements Paintable, MessageListener{
                   
                    Mouse.getInstance().click(233, 406, false);
                  Status = "Selecting bar to smith";
-                 Time.sleep(1000);
+                 Time.sleep(500);
                   Mouse.getInstance().click(233, 480, true);
-                  Time.sleep(1500);
+                  Time.sleep(1000);
                   Keyboard.getInstance().sendKeys("99");
                   Status = "Smithing bars";
                   Time.sleep(16000);
@@ -271,9 +272,9 @@ public class iSmith extends Script implements Paintable, MessageListener{
                   
                      Mouse.getInstance().click(60, 406, false);
                  Status = "Selecting bar to smith";
-                 Time.sleep(1000);
+                 Time.sleep(500);
                   Mouse.getInstance().click(60, 480, true);
-                  Time.sleep(1500);
+                  Time.sleep(1000);
                   Keyboard.getInstance().sendKeys("99");
                   Status = "Smithing bars";
                   Time.sleep(16000);
@@ -322,7 +323,7 @@ public class iSmith extends Script implements Paintable, MessageListener{
                  Mouse.getInstance().click(p3);
                  Status = "Teleporting to bank";
                  Camera.setRotation(180);
-                 Time.sleep(3000);
+                 Time.sleep(2200);
                  
              }
         
@@ -366,7 +367,7 @@ public class iSmith extends Script implements Paintable, MessageListener{
                  Mouse.getInstance().click(p3);
                  Status = "Teleporting to bank";
                  Camera.setRotation(180);
-                 Time.sleep(3000);
+                 Time.sleep(2200);
                  
              }
         
@@ -407,10 +408,10 @@ public class iSmith extends Script implements Paintable, MessageListener{
                     Point p4 = new Point(715, 285);
                     Mouse.getInstance().click(p4);
                     Status = "Opening skill teleports";
-                    Time.sleep(2000);
+                    Time.sleep(1300);
                     Point p5 = new Point (257, 431);
                     Mouse.getInstance().click(p5);
-                    Time.sleep(3000);
+                    Time.sleep(2200);
                  } 
           
           
@@ -451,10 +452,10 @@ public class iSmith extends Script implements Paintable, MessageListener{
                     Point p4 = new Point(715, 285);
                     Mouse.getInstance().click(p4);
                     Status = "Opening skill teleports";
-                    Time.sleep(2000);
+                    Time.sleep(1300);
                     Point p5 = new Point (257, 431);
                     Mouse.getInstance().click(p5);
-                    Time.sleep(3000);
+                    Time.sleep(2200);
                  } 
           
           
@@ -532,9 +533,9 @@ public class iSmith extends Script implements Paintable, MessageListener{
                
            }   else if (Bank.isOpen()) {
                Bank.withdraw(INGREDIENT, 99);
-               Time.sleep(850);
+               Time.sleep(600);
                Bank.close();
-               Time.sleep(1250);
+               Time.sleep(850);
                
            } 
         } 
@@ -576,41 +577,41 @@ public class iSmith extends Script implements Paintable, MessageListener{
                Bank.withdraw (INGREDIENT2, 20);
                Time.sleep(750);
                Bank.close();
-               Time.sleep(1250);
+               Time.sleep(850);
                
            } else if(INSTANCE == 3){
                
                Bank.withdraw(INGREDIENT, 7);
-               Time.sleep(750);
+               Time.sleep(600);
                Bank.withdraw (INGREDIENT2, 21);
                Time.sleep(750);
                Bank.close();
-               Time.sleep(1250);
+               Time.sleep(850);
            } else if (INSTANCE == 4) {
                
                 Bank.withdraw(INGREDIENT, 9);
-               Time.sleep(750);
+               Time.sleep(600);
                Bank.withdraw (INGREDIENT2, 18);
                Time.sleep(750);
                Bank.close();
-               Time.sleep(1250);
+               Time.sleep(850);
            } else if (INSTANCE == 5) {
                
                Bank.withdraw(INGREDIENT, 14);
-               Time.sleep(750);
+               Time.sleep(600);
                Bank.withdraw (INGREDIENT2, 14);
                Time.sleep(750);
                Bank.close();
-               Time.sleep(1250);
+               Time.sleep(850);
                
            } else if (INSTANCE == 6) {
                
                Bank.withdraw(INGREDIENT, 14);
-               Time.sleep(750);
+               Time.sleep(600);
                Bank.withdraw (INGREDIENT2, 14);
                Time.sleep(750);
                Bank.close();
-               Time.sleep(1250);
+               Time.sleep(850);
                
            } 
         } 
