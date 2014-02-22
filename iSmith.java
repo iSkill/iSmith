@@ -32,9 +32,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.JCheckBox;
 import javax.swing.JTabbedPane;
 import org.parabot.core.ui.components.LogArea;
+import org.rev317.api.methods.BotMouse;
 import org.rev317.api.wrappers.hud.Item;
 
 @ScriptManifest(author = "iSkill", category = Category.SMITHING, description = "Smelts any bar at Varrock (More locations soon!)", name = "iSmith", servers = { "PKHonor" }, version = 2.0)
@@ -53,12 +57,12 @@ public class iSmith extends Script implements Paintable, MessageListener{
       int BARS = 0;
       
       int XPGAINED = 0;
-    private final Color color1 = new Color(0, 255, 255);
+
     private final Color color2 = new Color(0, 0, 0);
 
     private final BasicStroke stroke1 = new BasicStroke(3);
 
-    private final Font font1 = new Font("Verdana", 1, 17);
+  
     private final Font font2 = new Font("Verdana", 1, 11);
 
     static long StartTime;    
@@ -367,7 +371,7 @@ public class iSmith extends Script implements Paintable, MessageListener{
                  Mouse.getInstance().click(p3);
                  Status = "Teleporting to bank";
                  Camera.setRotation(180);
-                 Time.sleep(2200);
+                 Time.sleep(2500);
                  
              }
         
@@ -490,7 +494,7 @@ public class iSmith extends Script implements Paintable, MessageListener{
                  Time.sleep(3000);
                  
            } else if(!A.isOnScreen()) {
-               Camera.turnTo(A, false);
+               Camera.turnTo(A, true);
                
            }   else if (Bank.isOpen()) {
                Bank.depositAll();
@@ -533,7 +537,7 @@ public class iSmith extends Script implements Paintable, MessageListener{
                
            }   else if (Bank.isOpen()) {
                Bank.withdraw(INGREDIENT, 99);
-               Time.sleep(600);
+               Time.sleep(700);
                Bank.close();
                Time.sleep(850);
                
@@ -573,9 +577,9 @@ public class iSmith extends Script implements Paintable, MessageListener{
                
            }   else if (Bank.isOpen() && INSTANCE == 2 ) {
                Bank.withdraw(INGREDIENT, 5);
-               Time.sleep(750);
+               Time.sleep(850);
                Bank.withdraw (INGREDIENT2, 20);
-               Time.sleep(750);
+               Time.sleep(850);
                Bank.close();
                Time.sleep(850);
                
@@ -618,7 +622,31 @@ public class iSmith extends Script implements Paintable, MessageListener{
         }
        
           
-         
+         public void drawMouse(Graphics g) {
+    // Red dot
+    g.setColor(Color.RED);
+    g.drawOval(BotMouse.getMouseX() - 1, BotMouse.getMouseY() - 1, 2, 2);
+    g.fillOval(BotMouse.getMouseX() - 1, BotMouse.getMouseY() - 1, 2, 2);
+ 
+    // White rectangle
+    g.setColor(Color.WHITE);
+    g.drawRect(BotMouse.getMouseX() - 8, BotMouse.getMouseY() - 8, 16, 16);
+ 
+   
+    g.drawLine(0, BotMouse.getMouseY(), BotMouse.getMouseX() - 8,
+                    BotMouse.getMouseY());
+    g.drawLine(BotMouse.getMouseX() + 8, BotMouse.getMouseY(), 765,
+                    BotMouse.getMouseY());
+ 
+    // Vertical White Lines
+    g.drawLine(BotMouse.getMouseX(), 0, BotMouse.getMouseX(),
+                    BotMouse.getMouseY() - 8);
+    g.drawLine(BotMouse.getMouseX(), BotMouse.getMouseY() + 8,
+                    BotMouse.getMouseX(), 503);
+}
+          
+          
+          
     @Override
     public void onFinish() {
 
@@ -628,28 +656,35 @@ public class iSmith extends Script implements Paintable, MessageListener{
 
  
 
-    public void paint(Graphics g1) {
-       if (guiWait == false)
-       {
-        Graphics2D g = (Graphics2D)g1;
-        g.setColor(color1);
-        g.fillRoundRect(312, 345, 183, 114, 16, 16);
-        g.setColor(color2);
-        g.setStroke(stroke1);
-        g.drawRoundRect(312, 345, 183, 114, 16, 16);
-        g.setFont(font1);
-        g.drawString("iSmith", 370, 365);
-        g.setFont(font2);
-        g.drawString("Time ran: " +runTime(startTime), 317, 381);
-        g.drawString("Current bar: " + BARTYPE, 317, 397);
-        g.drawString("Bars smited: " + BARS, 317, 415);
-        g.drawString("XP gained: " + XPGAINED, 317, 434);
-        g.drawString("Version: " + "2.0", 317, 452);
-        
-       }
-        
+    //START: Code generated using Enfilade's Easel
+    private Image getImage(String url) {
+        try {
+            return ImageIO.read(new URL(url));
+        } catch(IOException e) {
+            return null;
+        }
     }
-  
+
+    private final Color color1 = new Color(255, 255, 255);
+
+    private final Font font1 = new Font("Arial", 1, 16);
+
+    private final Image img1 = getImage("http://i60.tinypic.com/2w20me1.png");
+
+    public void paint (Graphics g1) {
+     
+            
+        Graphics2D g = (Graphics2D)g1;
+        g.drawImage(img1, -1, 337, null);
+        g.setFont(font1);
+        g.setColor(color1);
+        g.drawString("" +runTime(startTime), 57, 389);
+        g.drawString("" + BARTYPE, 138, 406);
+        g.drawString("" + BARS, 146, 424);
+        g.drawString("" + XPGAINED, 114, 442);
+        drawMouse(g1); 
+    }
+   
 
  
     
@@ -666,7 +701,7 @@ public void messageReceived(MessageEvent m) {
  
        
                                 } else {
-            if (m.getMessage().contains("rune")) {
+            if (m.getMessage().contains("rune bar")) {
             BARS += 1;
             XPGAINED += 10000;
         } else {
@@ -902,7 +937,7 @@ public static class iSmithGUI extends JFrame {
 		lblSmithing_1.setBounds(160, 52, 159, 22);
 		panel_3.add(lblSmithing_1);
 		
-		JLabel lblInventoryIs = new JLabel("\u2022 Inventory is empty on start");
+		JLabel lblInventoryIs = new JLabel("\u2022 Inventory is empty on start & Camera is lowered");
 		lblInventoryIs.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblInventoryIs.setBounds(115, 79, 193, 14);
 		panel_3.add(lblInventoryIs);
